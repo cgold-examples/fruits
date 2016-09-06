@@ -129,11 +129,11 @@ script:
   - >
     if [[ "${GENERATE_DOCUMENTATION}" != "1" ]];
     then
-      build.py
-      --toolchain ${TOOLCHAIN}
-      --config ${CONFIG}
-      --verbose
-      --clear
+      build.py \
+          --toolchain ${TOOLCHAIN} \
+          --config ${CONFIG} \
+          --verbose \
+          --clear
     fi
 
   - >
