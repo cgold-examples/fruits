@@ -4,110 +4,86 @@ environment:
   matrix:
     ###
     - TOOLCHAIN: "ninja-vs-12-2013-win64"
-      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "ninja-vs-12-2013-win64"
-      EXAMPLE: 01-executable
       CONFIG: Debug
 
     ###
     - TOOLCHAIN: "nmake-vs-12-2013-win64"
-      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "nmake-vs-12-2013-win64"
-      EXAMPLE: 01-executable
       CONFIG: Debug
 
     ###
     - TOOLCHAIN: "nmake-vs-12-2013"
-      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "nmake-vs-12-2013"
-      EXAMPLE: 01-executable
       CONFIG: Debug
 
     ###
     - TOOLCHAIN: "vs-10-2010"
-      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "vs-10-2010"
-      EXAMPLE: 01-executable
       CONFIG: Debug
 
     ###
     - TOOLCHAIN: "vs-11-2012"
-      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "vs-11-2012"
-      EXAMPLE: 01-executable
       CONFIG: Debug
 
     ###
     - TOOLCHAIN: "vs-12-2013-win64"
-      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "vs-12-2013-win64"
-      EXAMPLE: 01-executable
       CONFIG: Debug
 
     ###
     - TOOLCHAIN: "vs-12-2013-xp"
-      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "vs-12-2013-xp"
-      EXAMPLE: 01-executable
       CONFIG: Debug
 
     ###
     - TOOLCHAIN: "vs-12-2013"
-      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "vs-12-2013"
-      EXAMPLE: 01-executable
       CONFIG: Debug
 
     ###
     - TOOLCHAIN: "vs-14-2015"
-      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "vs-14-2015"
-      EXAMPLE: 01-executable
       CONFIG: Debug
 
     ###
     - TOOLCHAIN: "vs-9-2008"
-      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "vs-9-2008"
-      EXAMPLE: 01-executable
       CONFIG: Debug
 
     ###
     - TOOLCHAIN: "mingw"
-      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "mingw"
-      EXAMPLE: 01-executable
       CONFIG: Debug
 
     ###
     - TOOLCHAIN: "msys"
-      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "msys"
-      EXAMPLE: 01-executable
       CONFIG: Debug
 
 install:
