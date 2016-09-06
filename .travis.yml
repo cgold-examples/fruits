@@ -1,0 +1,144 @@
+# OSX/Linux (https://github.com/travis-ci-tester/toolchain-table)
+
+language:
+  - cpp
+
+# Container-based infrastructure (Linux)
+# * https://docs.travis-ci.com/user/migrating-from-legacy/#How-can-I-use-container-based-infrastructure%3F
+sudo:
+  - false
+
+# Install packages differs for container-based infrastructure
+# * https://docs.travis-ci.com/user/migrating-from-legacy/#How-do-I-install-APT-sources-and-packages%3F
+# * http://stackoverflow.com/a/30925448/2288008
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+
+    packages:
+      - python3
+
+      # python3-pip package is not available, use 'easy_install3':
+      # * https://github.com/travis-ci/apt-package-whitelist/issues/768
+      - python3-setuptools # easy_install3
+
+      # https://github.com/travis-ci-tester/travis-test-clang-cxx-11
+      - libstdc++-4.8-dev
+
+      # https://github.com/travis-ci-tester/travis-test-gcc-cxx-11
+      - g++-4.8
+
+matrix:
+  include:
+    # Linux {
+    - os: linux
+      env: TOOLCHAIN=clang-libstdcxx CONFIG=Release
+    - os: linux
+      env: TOOLCHAIN=clang-libstdcxx CONFIG=Debug
+    - os: linux
+      env: TOOLCHAIN=gcc-4-8 CONFIG=Release
+    - os: linux
+      env: TOOLCHAIN=gcc-4-8 CONFIG=Debug
+    - os: linux
+      env: TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+    - os: linux
+      env: TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
+    - os: linux
+      env: TOOLCHAIN=analyze CONFIG=Release
+    - os: linux
+      env: TOOLCHAIN=analyze CONFIG=Debug
+    - os: linux
+      env: TOOLCHAIN=sanitize-address CONFIG=Release
+    - os: linux
+      env: TOOLCHAIN=sanitize-address CONFIG=Debug
+    - os: linux
+      env: TOOLCHAIN=sanitize-leak CONFIG=Release
+    - os: linux
+      env: TOOLCHAIN=sanitize-leak CONFIG=Debug
+    - os: linux
+      env: TOOLCHAIN=sanitize-thread CONFIG=Release
+    - os: linux
+      env: TOOLCHAIN=sanitize-thread CONFIG=Debug
+    - os: linux
+      env: GENERATE_DOCUMENTATION=1
+    # }
+
+    # OSX {
+    - os: osx
+      env: TOOLCHAIN=libcxx CONFIG=Debug
+    - os: osx
+      env: TOOLCHAIN=libcxx CONFIG=Release
+    - os: osx
+      env: TOOLCHAIN=clang-libstdcxx CONFIG=Release
+    - os: osx
+      env: TOOLCHAIN=clang-libstdcxx CONFIG=Debug
+    - os: osx
+      env: TOOLCHAIN=osx-10-9 CONFIG=Debug
+    - os: osx
+      env: TOOLCHAIN=osx-10-9 CONFIG=Release
+    - os: osx
+      env: TOOLCHAIN=ios-nocodesign CONFIG=Debug
+    - os: osx
+      env: TOOLCHAIN=ios-nocodesign CONFIG=Release
+    - os: osx
+      osx_image: xcode7.3
+      env: TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Debug
+    - os: osx
+      osx_image: xcode7.3
+      env: TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Release
+    - os: osx
+      env: TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+    - os: osx
+      env: TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
+    - os: osx
+      env: TOOLCHAIN=analyze CONFIG=Release
+    - os: osx
+      env: TOOLCHAIN=analyze CONFIG=Debug
+    # }
+
+install:
+  # Info about OS
+  - uname -a
+
+  # Install Python 3
+  - if [[ "`uname`" == "Darwin" ]]; then travis_retry brew install python3; fi
+
+  # Install Python package 'requests'
+  # 'easy_install3' is not installed by 'brew install python3' on OS X 10.9 Maverick
+  - if [[ "`uname`" == "Darwin" ]]; then pip3 install requests; fi
+  - if [[ "`uname`" == "Linux" ]]; then travis_retry easy_install3 --user requests==2.10.0; fi
+
+  # Install latest Polly toolchains and scripts
+  - wget https://github.com/ruslo/polly/archive/master.zip
+  - unzip master.zip
+  - POLLY_ROOT="`pwd`/polly-master"
+  - export PATH="${POLLY_ROOT}/bin:${PATH}"
+
+  # Install dependencies (CMake, Android NDK)
+  - install-ci-dependencies.py
+
+  # Tune locations
+  - export PATH="`pwd`/_ci/cmake/bin:${PATH}"
+
+  # Installed if toolchain is Android (otherwise directory doesn't exist)
+  - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
+  - export ANDROID_NDK_r11c="`pwd`/_ci/android-ndk-r11c"
+
+script:
+  - >
+    if [[ "${GENERATE_DOCUMENTATION}" != "1" ]];
+    then
+      build.py
+      --toolchain ${TOOLCHAIN}
+      --config ${CONFIG}
+      --verbose
+      --clear
+    fi
+
+  - >
+    if [[ "${GENERATE_DOCUMENTATION}" == "1" ]];
+    then
+      cd docs
+      ./jenkins.sh
+    fi
