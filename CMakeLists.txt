@@ -16,6 +16,7 @@ project(fruits)
 # https://github.com/ruslo/hunter/wiki/pkg.sugar
 hunter_add_package(Sugar)
 include("${SUGAR_ROOT}/cmake/Sugar")
+include(sugar_include)
 
 # Collect sources:
 # * https://github.com/ruslo/sugar/wiki/Collecting-sources
@@ -32,6 +33,9 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 # * http://cgold.readthedocs.io/en/latest/tutorials/variables/cache.html#recommendation
 option(FRUITS_BUILD_EXAMPLES "Build examples" ON)
 option(FRUITS_BUILD_TESTS "Build tests" ON)
+
+# All targets from this project use those include directories
+include_directories("${CMAKE_CURRENT_LIST_DIR}/lib")
 
 add_subdirectory(lib)
 add_subdirectory(app)
