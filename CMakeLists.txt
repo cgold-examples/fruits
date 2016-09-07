@@ -22,6 +22,7 @@ include("${SUGAR_ROOT}/cmake/Sugar")
 sugar_include("./")
 
 # http://cgold.readthedocs.io/en/latest/tutorials/cmake-sources/includes.html#modify-correct
+# TODO: add CMake modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 # If somebody want to install your libraries and tools probably they don't want
