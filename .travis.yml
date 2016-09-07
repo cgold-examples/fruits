@@ -29,6 +29,9 @@ addons:
       # https://github.com/travis-ci-tester/travis-test-gcc-cxx-11
       - g++-4.8
 
+      # For documentation
+      - python-enchant
+
 matrix:
   include:
     # Linux {
