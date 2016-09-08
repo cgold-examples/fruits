@@ -1,0 +1,2 @@
+add_executable(fruits_breakfast ${FRUITS_BREAKFAST_SOURCES})
+target_link_libraries(fruits_breakfast fruits_tropical)
