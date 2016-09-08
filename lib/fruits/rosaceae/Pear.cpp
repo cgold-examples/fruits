@@ -8,7 +8,7 @@ Pear::Pear(int basic_code):
 }
 
 const char* Pear::name() {
-  return "Pear";
+  return "pear";
 }
 
 int Pear::code() const {

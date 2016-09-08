@@ -4,7 +4,7 @@ namespace fruits {
 namespace rosaceae {
 
 const char* Plum::name() {
-  return "Plum";
+  return "plum";
 }
 
 } // namespace rosaceae

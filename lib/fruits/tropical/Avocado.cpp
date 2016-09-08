@@ -4,7 +4,7 @@ namespace fruits {
 namespace tropical {
 
 const char* Avocado::name() {
-  return "Avocado";
+  return "avocado";
 }
 
 } // namespace tropical
