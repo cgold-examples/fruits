@@ -11,6 +11,10 @@ const char* Pear::name() {
   return "pear";
 }
 
+bool Pear::skin_off() {
+  return false;
+}
+
 int Pear::code() const {
   return code_;
 }

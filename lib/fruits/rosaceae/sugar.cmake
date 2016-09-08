@@ -8,3 +8,5 @@ sugar_files(
     Plum.hpp
     rosaceae.hpp
 )
+
+sugar_include(unittest)

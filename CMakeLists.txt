@@ -41,6 +41,7 @@ add_subdirectory(lib)
 add_subdirectory(app)
 
 if(FRUITS_BUILD_TESTS)
+  enable_testing() # Should be in top-level CMakeLists.txt
   add_subdirectory(test)
 endif()
 

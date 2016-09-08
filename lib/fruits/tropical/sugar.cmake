@@ -6,3 +6,5 @@ sugar_files(
     Pineapple.hpp
     tropical.hpp
 )
+
+sugar_include(unittest)

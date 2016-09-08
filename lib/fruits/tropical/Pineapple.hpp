@@ -7,6 +7,8 @@ namespace tropical {
 class Pineapple {
  public:
   static const char* name();
+
+  static bool skin_off();
 };
 
 } // namespace tropical

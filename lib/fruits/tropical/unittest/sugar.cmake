@@ -1,0 +1,2 @@
+sugar_files(FRUITS_CHECK_TROPICAL_SOURCES Avocado.cpp)
+sugar_files(FRUITS_SKIN_OFF_SOURCES Pineapple.cpp)

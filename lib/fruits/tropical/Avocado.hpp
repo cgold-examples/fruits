@@ -7,6 +7,8 @@ namespace tropical {
 class Avocado {
  public:
   static const char* name();
+
+  static bool tropical();
 };
 
 } // namespace tropical

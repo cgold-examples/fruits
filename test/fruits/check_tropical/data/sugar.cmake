@@ -1,0 +1,1 @@
+sugar_files(FRUITS_CHECK_TROPICAL_DATA avocado.ini)

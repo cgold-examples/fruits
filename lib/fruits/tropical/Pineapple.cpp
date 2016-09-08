@@ -7,5 +7,9 @@ const char* Pineapple::name() {
   return "pineapple";
 }
 
+bool Pineapple::skin_off() {
+  return true;
+}
+
 } // namespace tropical
 } // namespace fruits
