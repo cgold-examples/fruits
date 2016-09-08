@@ -69,4 +69,4 @@ install:
   - cmd: set MSYS_PATH=C:\msys64\usr\bin
 
 build_script:
-  - cmd: python %POLLY_SOURCE_DIR%\bin\build.py --toolchain "%TOOLCHAIN%" --config "%CONFIG%" --verbose
+  - cmd: python %POLLY_SOURCE_DIR%\bin\build.py --toolchain "%TOOLCHAIN%" --config "%CONFIG%" --verbose --test

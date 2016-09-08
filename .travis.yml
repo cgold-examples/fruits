@@ -110,6 +110,7 @@ script:
           --toolchain ${TOOLCHAIN} \
           --config ${CONFIG} \
           --verbose \
+          --test \
           --clear
     fi
 
