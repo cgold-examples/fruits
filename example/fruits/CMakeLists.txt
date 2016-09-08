@@ -1,0 +1,2 @@
+add_subdirectory(vegan_party)
+add_subdirectory(quick_meal)
