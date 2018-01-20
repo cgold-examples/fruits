@@ -23,6 +23,7 @@ HunterGate(
     LOCAL # Load cmake/Hunter/config.cmake (optional, usually not required)
 )
 
+# Now the project can be started
 project(fruits VERSION 1.0.0)
 
 # https://github.com/ruslo/hunter/wiki/pkg.sugar
