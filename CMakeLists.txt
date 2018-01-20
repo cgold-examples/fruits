@@ -2,6 +2,18 @@
 # * http://cgold.readthedocs.io/en/latest/tutorials/version-policies.html#cmake-minimum-required
 cmake_minimum_required(VERSION 3.1)
 
+# Hunter options {
+
+# **Before** HunterGate and must be set to cache **without** FORCE to allow
+# customization from outside:
+# * http://cgold.readthedocs.io/en/latest/tutorials/variables/cache.html#use-case
+option(HUNTER_STATUS_DEBUG "Print debug info" ON)
+
+# Not needed, this is default. Added as an example.
+option(HUNTER_ENABLED "Enable Hunter package manager" ON)
+
+# }
+
 # Include HunterGate:
 # * https://docs.hunter.sh/en/latest/quick-start/boost-components.html#first-step
 include("cmake/HunterGate.cmake")
