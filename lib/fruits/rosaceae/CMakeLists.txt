@@ -1,4 +1,5 @@
 add_library(fruits_rosaceae ${FRUITS_ROSACEAE_SOURCES})
+target_include_directories(fruits_rosaceae PUBLIC ${LOCAL_INCLUDE_DIRECTORIES})
 
 install(
     TARGETS fruits_rosaceae

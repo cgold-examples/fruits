@@ -23,4 +23,4 @@ else()
 endif()
 
 add_executable(fruits_quick_meal ${FRUITS_QUICK_MEAL_SOURCES})
-target_link_libraries(fruits_quick_meal fruits::fruits_rosaceae)
+target_link_libraries(fruits_quick_meal PUBLIC fruits::fruits_rosaceae)

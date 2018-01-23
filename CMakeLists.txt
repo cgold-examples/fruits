@@ -58,9 +58,6 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 option(FRUITS_BUILD_EXAMPLES "Build examples" ON)
 option(FRUITS_BUILD_TESTS "Build tests" ON)
 
-# All targets from this project use those include directories
-include_directories("${CMAKE_CURRENT_LIST_DIR}/lib")
-
 ### Installation (https://github.com/forexample/package-example) {
 
 set(config_install_dir "lib/cmake/${PROJECT_NAME}")

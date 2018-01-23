@@ -1,5 +1,7 @@
 add_executable(fruits_breakfast ${FRUITS_BREAKFAST_SOURCES})
-target_link_libraries(fruits_breakfast fruits_tropical)
+target_include_directories(fruits_breakfast PUBLIC ${LOCAL_INCLUDE_DIRECTORIES})
+
+target_link_libraries(fruits_breakfast PUBLIC fruits_tropical)
 
 if(NOT IOS)
   install(

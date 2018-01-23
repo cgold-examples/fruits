@@ -1,5 +1,5 @@
 add_executable(fruits_check_tropical ${FRUITS_CHECK_TROPICAL_SOURCES})
-target_link_libraries(fruits_check_tropical GTest::main fruits_tropical)
+target_link_libraries(fruits_check_tropical PUBLIC GTest::main fruits_tropical)
 
 foreach(x ${FRUITS_CHECK_TROPICAL_DATA})
   add_custom_command(

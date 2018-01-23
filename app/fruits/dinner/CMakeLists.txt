@@ -1,5 +1,5 @@
 add_executable(fruits_dinner ${FRUITS_DINNER_SOURCES})
-target_link_libraries(fruits_dinner fruits_rosaceae fruits_tropical)
+target_link_libraries(fruits_dinner PUBLIC fruits_rosaceae fruits_tropical)
 
 if(NOT IOS)
   install(

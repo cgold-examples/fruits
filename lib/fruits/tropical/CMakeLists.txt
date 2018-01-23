@@ -1,4 +1,5 @@
 add_library(fruits_tropical ${FRUITS_TROPICAL_SOURCES})
+target_include_directories(fruits_tropical PUBLIC ${LOCAL_INCLUDE_DIRECTORIES})
 
 install(
     TARGETS fruits_tropical
