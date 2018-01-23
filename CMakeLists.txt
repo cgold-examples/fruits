@@ -31,9 +31,20 @@ project(fruits VERSION 1.0.0)
 hunter_add_package(sugar)
 find_package(sugar CONFIG REQUIRED)
 
-# Collect sources:
+# Collect sources {
 # * https://github.com/ruslo/sugar/wiki/Collecting-sources
-sugar_include("./")
+
+sugar_include(lib)
+sugar_include(app)
+
+# Folder 'test' have no sources. All sources for GTest located in 'lib' folder.
+# Sugar will collect only data files for testing.
+sugar_include(test)
+
+# Do not dive into 'example' folder. Projects can be used stand-alone
+# hence should collect sources themself.
+
+# }
 
 # http://cgold.readthedocs.io/en/latest/tutorials/cmake-sources/includes.html#modify-correct
 # TODO: add CMake modules
