@@ -1,4 +1,4 @@
-# https://github.com/ruslo/hunter/wiki/pkg.gtest
+# https://docs.hunter.sh/en/latest/packages/pkg/GTest.html
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
