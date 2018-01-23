@@ -9,7 +9,7 @@ HunterGate(
 project(fruits_quick_meal)
 
 # https://github.com/ruslo/hunter/wiki/pkg.sugar
-hunter_add_package(Sugar)
+hunter_add_package(sugar)
 find_package(sugar CONFIG REQUIRED)
 
 # Collect sources:

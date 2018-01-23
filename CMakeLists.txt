@@ -27,7 +27,7 @@ HunterGate(
 project(fruits VERSION 1.0.0)
 
 # https://github.com/ruslo/hunter/wiki/pkg.sugar
-hunter_add_package(Sugar)
+hunter_add_package(sugar)
 find_package(sugar CONFIG REQUIRED)
 
 # Collect sources:
