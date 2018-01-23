@@ -4,8 +4,9 @@ cmake_minimum_required(VERSION 3.1)
 
 # Hunter options {
 
-# **Before** HunterGate and must be set to cache **without** FORCE to allow
-# customization from outside:
+# **Before** HunterGate and must be set to cache **without** FORCE (meaning
+# without INTERNAL, since INTERNAL implies FORCE) to allow customization
+# from outside:
 # * http://cgold.readthedocs.io/en/latest/tutorials/variables/cache.html#use-case
 option(HUNTER_STATUS_DEBUG "Print debug info" ON)
 
@@ -26,7 +27,7 @@ HunterGate(
 # Now the project can be started
 project(fruits VERSION 1.0.0)
 
-# https://github.com/ruslo/hunter/wiki/pkg.sugar
+# https://docs.hunter.sh/en/latest/packages/pkg/sugar.html
 hunter_add_package(sugar)
 find_package(sugar CONFIG REQUIRED)
 
