@@ -10,8 +10,7 @@ project(fruits_vegan_party)
 
 # https://github.com/ruslo/hunter/wiki/pkg.sugar
 hunter_add_package(Sugar)
-include("${SUGAR_ROOT}/cmake/Sugar")
-include(sugar_include)
+find_package(sugar CONFIG REQUIRED)
 
 # Collect sources:
 # * https://github.com/ruslo/sugar/wiki/Collecting-sources

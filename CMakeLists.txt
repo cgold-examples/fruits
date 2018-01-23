@@ -18,8 +18,8 @@ option(HUNTER_ENABLED "Enable Hunter package manager" ON)
 # * https://docs.hunter.sh/en/latest/quick-start/boost-components.html#first-step
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.19.232.tar.gz"
-    SHA1 "a412c45fe4c5a72fed386f62dd8d753bd4fd3d11"
+    URL "https://github.com/ruslo/hunter/archive/v0.19.233.tar.gz"
+    SHA1 "248462b5a67b90d38534351fd83c2ad1977f0fef"
     LOCAL # Load cmake/Hunter/config.cmake (optional, usually not required)
 )
 
@@ -28,8 +28,7 @@ project(fruits VERSION 1.0.0)
 
 # https://github.com/ruslo/hunter/wiki/pkg.sugar
 hunter_add_package(Sugar)
-include("${SUGAR_ROOT}/cmake/Sugar")
-include(sugar_include)
+find_package(sugar CONFIG REQUIRED)
 
 # Collect sources:
 # * https://github.com/ruslo/sugar/wiki/Collecting-sources
