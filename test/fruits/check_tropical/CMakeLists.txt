@@ -2,6 +2,7 @@ add_executable(fruits_check_tropical ${FRUITS_CHECK_TROPICAL_SOURCES})
 target_link_libraries(fruits_check_tropical PUBLIC GTest::main fruits_tropical)
 
 foreach(x ${FRUITS_CHECK_TROPICAL_DATA})
+  # Copy file(s) to the working directory of the test
   add_custom_command(
       TARGET fruits_check_tropical
       PRE_BUILD
