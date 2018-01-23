@@ -69,14 +69,15 @@ set(namespace "${PROJECT_NAME}::")
 
 include(CMakePackageConfigHelpers)
 
-# Note: PROJECT_VERSION is used as a VERSION
+# Use:
+# * PROJECT_VERSION
 write_basic_package_version_file(
     "${version_config}" COMPATIBILITY SameMajorVersion
 )
 
-# Use variables:
-#   * TARGETS_EXPORT_NAME
-#   * PROJECT_NAME
+# Use:
+# * TARGETS_EXPORT_NAME
+# * PROJECT_NAME
 configure_package_config_file(
     "cmake/Config.cmake.in"
     "${project_config}"
