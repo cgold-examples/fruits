@@ -55,12 +55,12 @@ find_package(sugar CONFIG REQUIRED)
 # Collect sources {
 # * https://github.com/ruslo/sugar/wiki/Collecting-sources
 
-sugar_include(lib)
-sugar_include(app)
+sugar_include(lib/fruits)
+sugar_include(app/fruits)
 
 # Folder 'test' have no sources. All sources for GTest located in 'lib' folder.
 # Sugar will collect only data files for testing.
-sugar_include(test)
+sugar_include(test/fruits)
 
 # Do not dive into 'example' folder. Projects can be used stand-alone
 # hence should collect sources themself.
