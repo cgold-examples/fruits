@@ -19,34 +19,31 @@ addons:
     packages:
       - python3
 
-      # python3-pip package is not available, use 'easy_install3':
-      # * https://github.com/travis-ci/apt-package-whitelist/issues/768
-      - python3-setuptools # easy_install3
-
-      # https://github.com/travis-ci-tester/travis-test-clang-cxx-11
-      - libstdc++-4.8-dev
-
-      # https://github.com/travis-ci-tester/travis-test-gcc-cxx-11
-      - g++-4.8
-
       # For documentation
       - python-enchant
+
+      - g++-5
+      - gcc-5
 
 matrix:
   include:
     # Linux {
     - os: linux
-      env: TOOLCHAIN=gcc-4-8 CONFIG=Release
+      env: TOOLCHAIN=gcc-5 CONFIG=Release
     - os: linux
-      env: TOOLCHAIN=gcc-4-8 CONFIG=Debug
+      env: TOOLCHAIN=gcc-5 CONFIG=Debug
     - os: linux
-      env: TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+      env: TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Release
     - os: linux
-      env: TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
+      env: TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Debug
     - os: linux
       env: TOOLCHAIN=sanitize-address CONFIG=Release
     - os: linux
       env: TOOLCHAIN=sanitize-address CONFIG=Debug
+    - os: linux
+      env: TOOLCHAIN=analyze CONFIG=Release
+    - os: linux
+      env: TOOLCHAIN=analyze CONFIG=Debug
     - os: linux
       env: GENERATE_DOCUMENTATION=1
     # }
@@ -57,24 +54,22 @@ matrix:
     - os: osx
       env: TOOLCHAIN=libcxx CONFIG=Release
     - os: osx
-      env: TOOLCHAIN=osx-10-9 CONFIG=Debug
+      env: TOOLCHAIN=osx-10-12 CONFIG=Debug
     - os: osx
-      env: TOOLCHAIN=osx-10-9 CONFIG=Release
+      env: TOOLCHAIN=osx-10-12 CONFIG=Release
     - os: osx
-      osx_image: xcode7.3
-      env: TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Debug
+      env: TOOLCHAIN=ios-nocodesign-10-3 CONFIG=Debug
     - os: osx
-      osx_image: xcode7.3
-      env: TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Release
-    - os: osx
-      env: TOOLCHAIN=analyze CONFIG=Release
-    - os: osx
-      env: TOOLCHAIN=analyze CONFIG=Debug
+      env: TOOLCHAIN=ios-nocodesign-10-3 CONFIG=Release
     # }
 
 install:
   # Info about OS
   - uname -a
+
+  # Disable autoupdate
+  # * https://github.com/Homebrew/brew/blob/7d31a70373edae4d8e78d91a4cbc05324bebc3ba/Library/Homebrew/manpages/brew.1.md.erb#L202
+  - export HOMEBREW_NO_AUTO_UPDATE=1
 
   # Install Python 3
   - if [[ "`uname`" == "Darwin" ]]; then travis_retry brew install python3; fi
@@ -82,9 +77,7 @@ install:
   # Install Python package 'requests'
   # 'easy_install3' is not installed by 'brew install python3' on OS X 10.9 Maverick
   - if [[ "`uname`" == "Darwin" ]]; then pip3 install requests; fi
-
-   # https://github.com/travis-ci/travis-ci/issues/6446#issuecomment-238906632
-  - if [[ "`uname`" == "Linux" ]]; then travis_retry easy_install3 --user requests==2.10.0; fi
+  - if [[ "`uname`" == "Linux" ]]; then travis_retry pip3 install --user requests; fi
 
   # Install latest Polly toolchains and scripts
   - wget https://github.com/ruslo/polly/archive/master.zip
@@ -101,6 +94,8 @@ install:
   # Installed if toolchain is Android (otherwise directory doesn't exist)
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
   - export ANDROID_NDK_r11c="`pwd`/_ci/android-ndk-r11c"
+  - export ANDROID_NDK_r15c="`pwd`/_ci/android-ndk-r15c"
+  - export ANDROID_NDK_r16b="`pwd`/_ci/android-ndk-r16b"
 
 script:
   - >
