@@ -2,7 +2,7 @@
 
 # Workaround for https://github.com/travis-ci/travis-ci/issues/8363
 language:
-- minimal
+  - minimal
 
 # Container-based infrastructure (Linux)
 # * https://docs.travis-ci.com/user/migrating-from-legacy/#How-can-I-use-container-based-infrastructure%3F
@@ -19,6 +19,7 @@ addons:
 
     packages:
       - python3
+      - python3-pip
 
       # For documentation
       - python-enchant
