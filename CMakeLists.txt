@@ -19,13 +19,20 @@ option(HUNTER_ENABLED "Enable Hunter package manager" ON)
 # * https://docs.hunter.sh/en/latest/quick-start/boost-components.html#first-step
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.19.233.tar.gz"
-    SHA1 "248462b5a67b90d38534351fd83c2ad1977f0fef"
+    URL "https://github.com/ruslo/hunter/archive/v0.19.234.tar.gz"
+    SHA1 "3deec1041bd01c91e78269522b901fbab3a765e5"
     LOCAL # Load cmake/Hunter/config.cmake (optional, usually not required)
 )
 
 # Now the project can be started
 project(fruits VERSION 1.0.0)
+
+# https://docs.hunter.sh/en/latest/packages/pkg/check_ci_tag.html
+hunter_add_package(check_ci_tag)
+find_package(check_ci_tag CONFIG REQUIRED)
+
+# Check version project matches tag from continuous integration build
+check_ci_tag()
 
 # https://docs.hunter.sh/en/latest/packages/pkg/sugar.html
 hunter_add_package(sugar)
