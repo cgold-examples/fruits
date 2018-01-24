@@ -118,6 +118,11 @@ install(
 
 ### }
 
+set(
+    LOCAL_GENERATED_INCLUDE_DIRECTORY
+    "${CMAKE_CURRENT_BINARY_DIR}/generated_headers"
+)
+
 add_subdirectory(lib)
 add_subdirectory(app)
 
