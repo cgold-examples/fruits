@@ -59,7 +59,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/module")
 
 # If somebody want to install your libraries and tools probably they don't want
 # to build tests or examples:
-# * https://github.com/ruslo/hunter/wiki/usr.adding.new.package#cmake-options
+# * https://docs.hunter.sh/en/latest/creating-new/create/cmake.html#cmake-options
 # Prefix options with project name:
 # * http://cgold.readthedocs.io/en/latest/tutorials/variables/cache.html#recommendation
 option(FRUITS_BUILD_EXAMPLES "Build examples" ON)
