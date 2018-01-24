@@ -1,5 +1,5 @@
 add_executable(fruits_breakfast ${FRUITS_BREAKFAST_SOURCES})
-target_include_directories(fruits_breakfast PUBLIC ${LOCAL_INCLUDE_DIRECTORIES})
+target_include_directories(fruits_breakfast PUBLIC ${LOCAL_INCLUDE_DIRECTORY})
 
 target_link_libraries(fruits_breakfast PUBLIC fruits_tropical)
 
