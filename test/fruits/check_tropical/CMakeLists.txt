@@ -11,3 +11,18 @@ foreach(x ${FRUITS_CHECK_TROPICAL_DATA})
 endforeach()
 
 add_test(NAME fruits_check_tropical COMMAND fruits_check_tropical)
+
+if(WIN32 AND BUILD_SHARED_LIBS)
+  # If dependent library is a DLL we have to add location of DLL to PATH
+  set(new_path "")
+  foreach(target fruits_tropical)
+    list(APPEND new_path $<TARGET_FILE_DIR:${target}>)
+  endforeach()
+  list(APPEND new_path $ENV{PATH})
+
+  string(REPLACE ";" "\;" new_path "${new_path}")
+
+  set_tests_properties(
+      fruits_check_tropical PROPERTIES ENVIRONMENT "PATH=${new_path}"
+  )
+endif()

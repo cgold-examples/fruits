@@ -1,10 +1,12 @@
 #ifndef FRUITS_TROPICAL_PINEAPPLE_HPP_
 #define FRUITS_TROPICAL_PINEAPPLE_HPP_
 
+#include <fruits/FRUITS_TROPICAL_EXPORT.h>
+
 namespace fruits {
 namespace tropical {
 
-class Pineapple {
+class FRUITS_TROPICAL_EXPORT Pineapple {
  public:
   static const char* name();
 

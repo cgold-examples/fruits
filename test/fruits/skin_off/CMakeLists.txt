@@ -4,3 +4,18 @@ target_link_libraries(
 )
 
 add_test(NAME fruits_skin_off COMMAND fruits_skin_off)
+
+if(WIN32 AND BUILD_SHARED_LIBS)
+  # If dependent library is a DLL we have to add location of DLL to PATH
+  set(new_path "")
+  foreach(target fruits_tropical fruits_rosaceae)
+    list(APPEND new_path $<TARGET_FILE_DIR:${target}>)
+  endforeach()
+  list(APPEND new_path $ENV{PATH})
+
+  string(REPLACE ";" "\;" new_path "${new_path}")
+
+  set_tests_properties(
+      fruits_skin_off PROPERTIES ENVIRONMENT "PATH=${new_path}"
+  )
+endif()
