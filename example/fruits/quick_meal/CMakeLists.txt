@@ -1,6 +1,4 @@
-if(TARGET fruits_rosaceae)
-  add_library(fruits::fruits_rosaceae ALIAS fruits_rosaceae)
-else()
+if(NOT TARGET fruits::fruits_rosaceae)
   # For the real project 'hunter_add_package' should be called before:
   # hunter_add_package(fruits)
 
