@@ -2,7 +2,7 @@
 
 # Workaround for https://github.com/travis-ci/travis-ci/issues/8363
 language:
-  - minimal
+  - cpp
 
 # Container-based infrastructure (Linux)
 # * https://docs.travis-ci.com/user/migrating-from-legacy/#How-can-I-use-container-based-infrastructure%3F
@@ -11,21 +11,22 @@ sudo:
 
 # Install packages differs for container-based infrastructure
 # * https://docs.travis-ci.com/user/migrating-from-legacy/#How-do-I-install-APT-sources-and-packages%3F
-# * http://stackoverflow.com/a/30925448/2288008
+# List of available packages:
+# * https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-trusty
+# List of available sources:
+# * https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
 
     packages:
-      - python3
       - python3-pip
 
       # For documentation
       - python-enchant
 
-      - g++-5
-      - gcc-5
+      - g++-7
 
 dist:
   - trusty
@@ -33,39 +34,68 @@ dist:
 matrix:
   include:
     # Linux {
+
     - os: linux
-      env: TOOLCHAIN=gcc-5 CONFIG=Release
+      env: TOOLCHAIN=gcc-7-cxx17 CONFIG=Release
+
     - os: linux
-      env: TOOLCHAIN=gcc-5 CONFIG=Debug
+      env: TOOLCHAIN=gcc-7-cxx17 CONFIG=Debug
+
     - os: linux
-      env: TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Release
+      env: TOOLCHAIN=clang-cxx17 CONFIG=Release
+
     - os: linux
-      env: TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Debug
+      env: TOOLCHAIN=clang-cxx17 CONFIG=Debug
+
     - os: linux
-      env: TOOLCHAIN=sanitize-address CONFIG=Release
+      env: TOOLCHAIN=android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14 CONFIG=Release
+
     - os: linux
-      env: TOOLCHAIN=sanitize-address CONFIG=Debug
+      env: TOOLCHAIN=android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14 CONFIG=Debug
+
     - os: linux
-      env: TOOLCHAIN=analyze CONFIG=Release
+      env: TOOLCHAIN=sanitize-address-cxx17 CONFIG=Release
+
     - os: linux
-      env: TOOLCHAIN=analyze CONFIG=Debug
+      env: TOOLCHAIN=sanitize-address-cxx17 CONFIG=Debug
+
+    - os: linux
+      env: TOOLCHAIN=analyze-cxx17 CONFIG=Release
+
+    - os: linux
+      env: TOOLCHAIN=analyze-cxx17 CONFIG=Debug
+
     - os: linux
       env: GENERATE_DOCUMENTATION=1
+
     # }
 
     # OSX {
+
     - os: osx
-      env: TOOLCHAIN=libcxx CONFIG=Debug
+      osx_image: xcode9.2
+      env: TOOLCHAIN=osx-10-13-make-cxx14 CONFIG=Release
+
     - os: osx
-      env: TOOLCHAIN=libcxx CONFIG=Release
+      osx_image: xcode9.2
+      env: TOOLCHAIN=osx-10-13-make-cxx14 CONFIG=Debug
+
     - os: osx
-      env: TOOLCHAIN=osx-10-12 CONFIG=Debug
+      osx_image: xcode9.2
+      env: TOOLCHAIN=osx-10-13-cxx14 CONFIG=Release
+
     - os: osx
-      env: TOOLCHAIN=osx-10-12 CONFIG=Release
+      osx_image: xcode9.2
+      env: TOOLCHAIN=osx-10-13-cxx14 CONFIG=Debug
+
     - os: osx
-      env: TOOLCHAIN=ios-nocodesign-10-3 CONFIG=Debug
+      osx_image: xcode9.2
+      env: TOOLCHAIN=ios-nocodesign-11-2-dep-9-3 CONFIG=Release
+
     - os: osx
-      env: TOOLCHAIN=ios-nocodesign-10-3 CONFIG=Release
+      osx_image: xcode9.2
+      env: TOOLCHAIN=ios-nocodesign-11-2-dep-9-3 CONFIG=Debug
+
     # }
 
 install:
