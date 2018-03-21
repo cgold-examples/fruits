@@ -120,33 +120,31 @@ install(
 
 ### RPATH settings {
 
-if(BUILD_SHARED_LIBS)
-  # https://cmake.org/Wiki/CMake_RPATH_handling
-  if(IOS)
-    # TODO: iOS dynamic framework
-  elseif(ANDROID)
-    # *.so libraries loaded by Java code, RPATH will not be used
-  elseif(UNIX)
-    # Executables installed to 'bin' folder, shared libraries to 'lib' folder:
-    #   <root>/bin/<executable>
-    #   <root>/lib/<library>
-    # Path from executable to library: <executable-path>/../lib
+# https://cmake.org/Wiki/CMake_RPATH_handling
+if(IOS)
+  # TODO: iOS dynamic framework
+elseif(ANDROID)
+  # *.so libraries loaded by Java code, RPATH will not be used
+elseif(UNIX)
+  # Executables installed to 'bin' folder, shared libraries to 'lib' folder:
+  #   <root>/bin/<executable>
+  #   <root>/lib/<library>
+  # Path from executable to library: <executable-path>/../lib
 
-    # To test this code install project with BUILD_SHARED_LIBS=ON and try to
-    # run any executable from 'bin' folder, e.g.:
-    #   /<install-root>/bin/fruits_breakfast
+  # To test this code install project with BUILD_SHARED_LIBS=ON and try to
+  # run any executable from 'bin' folder, e.g.:
+  #   /<install-root>/bin/fruits_breakfast
 
-    # If RPATH is not correct, you will see the error:
-    #   fruits_breakfast: error while loading shared libraries:
-    #   libfruits_tropical.so: cannot open shared object file:
-    #   No such file or directory
-    if(APPLE)
-      # https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/dyld.1.html
-      set(CMAKE_INSTALL_RPATH "@executable_path/../lib")
-    else()
-      # https://linux.die.net/man/8/ld-linux
-      set(CMAKE_INSTALL_RPATH "\$ORIGIN/../lib")
-    endif()
+  # If RPATH is not correct, you will see the error:
+  #   fruits_breakfast: error while loading shared libraries:
+  #   libfruits_tropical.so: cannot open shared object file:
+  #   No such file or directory
+  if(APPLE)
+    # https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/dyld.1.html
+    set(CMAKE_INSTALL_RPATH "@executable_path/../lib")
+  else()
+    # https://linux.die.net/man/8/ld-linux
+    set(CMAKE_INSTALL_RPATH "\$ORIGIN/../lib")
   endif()
 endif()
 
