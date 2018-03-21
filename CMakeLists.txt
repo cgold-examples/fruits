@@ -73,7 +73,14 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/module")
 
 ### Installation (https://github.com/forexample/package-example) {
 
-set(config_install_dir "lib/cmake/${PROJECT_NAME}")
+
+# Introduce variables:
+# * CMAKE_INSTALL_LIBDIR
+# * CMAKE_INSTALL_BINDIR
+# * CMAKE_INSTALL_INCLUDEDIR
+include(GNUInstallDirs)
+
+set(config_install_dir "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
 set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
 set(version_config "${generated_dir}/${PROJECT_NAME}ConfigVersion.cmake")
 set(project_config "${generated_dir}/${PROJECT_NAME}Config.cmake")
@@ -99,7 +106,7 @@ configure_package_config_file(
 
 install(
     DIRECTORY "lib/fruits"
-    DESTINATION "include"
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
     FILES_MATCHING
     PATTERN "*.hpp"
     PATTERN "/unittest/" EXCLUDE

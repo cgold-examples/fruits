@@ -12,7 +12,7 @@ endforeach()
 
 add_test(NAME fruits_check_tropical COMMAND fruits_check_tropical)
 
-if(WIN32 AND BUILD_SHARED_LIBS)
+if(WIN32 OR CYGWIN)
   # If dependent library is a DLL we have to add location of DLL to PATH
   set(new_path "")
   foreach(target fruits_tropical)
@@ -20,7 +20,13 @@ if(WIN32 AND BUILD_SHARED_LIBS)
   endforeach()
   list(APPEND new_path $ENV{PATH})
 
-  string(REPLACE ";" "\;" new_path "${new_path}")
+  if(WIN32)
+    string(REPLACE ";" "\;" new_path "${new_path}")
+  elseif(CYGWIN)
+    string(REPLACE ";" ":" new_path "${new_path}")
+  else()
+    message(FATAL_ERROR "Unreachable")
+  endif()
 
   set_tests_properties(
       fruits_check_tropical PROPERTIES ENVIRONMENT "PATH=${new_path}"
