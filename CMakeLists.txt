@@ -73,7 +73,6 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/module")
 
 ### Installation (https://github.com/forexample/package-example) {
 
-
 # Introduce variables:
 # * CMAKE_INSTALL_LIBDIR
 # * CMAKE_INSTALL_BINDIR
@@ -153,6 +152,36 @@ elseif(UNIX)
     # https://linux.die.net/man/8/ld-linux
     set(CMAKE_INSTALL_RPATH "\$ORIGIN/../lib")
   endif()
+endif()
+
+### }
+
+### Install PDB {
+
+# https://github.com/forexample/package-example/blob/00335ff3f39c3b82a4b4b6095412b5a9e3aeda81/Foo/CMakeLists.txt#L24-L85
+if(MSVC)
+  set(pdb_output_dir "${CMAKE_CURRENT_BINARY_DIR}/pdb-files")
+
+  set(CMAKE_PDB_OUTPUT_DIRECTORY "${pdb_output_dir}")
+  set(CMAKE_COMPILE_PDB_OUTPUT_DIRECTORY "${pdb_output_dir}")
+
+  get_cmake_property(is_multi GENERATOR_IS_MULTI_CONFIG)
+  if(is_multi)
+    set(config_suffix "$<CONFIG>")
+  else()
+    set(config_suffix "")
+  endif()
+
+  if(BUILD_SHARED_LIBS)
+    set(pdb_dst ${CMAKE_INSTALL_BINDIR})
+  else()
+    set(pdb_dst ${CMAKE_INSTALL_LIBDIR})
+  endif()
+
+  install(
+      DIRECTORY "${pdb_output_dir}/${config_suffix}/"
+      DESTINATION ${pdb_dst}
+  )
 endif()
 
 ### }
