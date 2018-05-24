@@ -19,8 +19,8 @@ option(HUNTER_ENABLED "Enable Hunter package manager" ON)
 # * https://docs.hunter.sh/en/latest/quick-start/boost-components.html#first-step
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.21.17.tar.gz"
-    SHA1 "c414960e1218d6e3d97ad095de59e106b8973c3e"
+    URL "https://github.com/ruslo/hunter/archive/v0.21.18.tar.gz"
+    SHA1 "19e4a2f3034baa13f215eba3aa580365c5254508"
     LOCAL # Load cmake/Hunter/config.cmake (optional, usually not required)
 )
 
