@@ -1,6 +1,7 @@
 if(NOT TARGET fruits::fruits_rosaceae)
-  # For the real project 'hunter_add_package' should be called before:
-  # hunter_add_package(fruits)
+  # Will work only with GIT_SELF because there is no 'fruits' package in
+  # upstream Hunter
+  hunter_add_package(fruits)
 
   find_package(fruits CONFIG REQUIRED)
 endif()
