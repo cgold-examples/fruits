@@ -1,6 +1,9 @@
 # Must be the first command:
 # * http://cgold.readthedocs.io/en/latest/tutorials/version-policies.html#cmake-minimum-required
-cmake_minimum_required(VERSION 3.1)
+#
+# CMake 3.2 is minimum for Hunter:
+# * https://docs.hunter.sh/en/latest/quick-start/cmake.html
+cmake_minimum_required(VERSION 3.2)
 
 # Hunter options {
 
