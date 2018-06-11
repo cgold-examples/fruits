@@ -5,27 +5,9 @@
 # * https://docs.hunter.sh/en/latest/quick-start/cmake.html
 cmake_minimum_required(VERSION 3.2)
 
-# Hunter options {
-
-# **Before** HunterGate and must be set to cache **without** FORCE (meaning
-# without INTERNAL, since INTERNAL implies FORCE) to allow customization
-# from outside:
-# * http://cgold.readthedocs.io/en/latest/tutorials/variables/cache.html#use-case
-option(HUNTER_STATUS_DEBUG "Print debug info" ON)
-
-# Not needed, this is default. Added as an example.
-option(HUNTER_ENABLED "Enable Hunter package manager" ON)
-
-# }
-
-# Include HunterGate:
-# * https://docs.hunter.sh/en/latest/quick-start/boost-components.html#first-step
-include("cmake/HunterGate.cmake")
-HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.21.18.tar.gz"
-    SHA1 "19e4a2f3034baa13f215eba3aa580365c5254508"
-    LOCAL # Load cmake/Hunter/config.cmake (optional, usually not required)
-)
+# This is where HunterGate called from.
+# For rationale see comments inside module.
+include("example/cmake/include/init.cmake")
 
 # Now the project can be started
 project(fruits VERSION 1.0.0)

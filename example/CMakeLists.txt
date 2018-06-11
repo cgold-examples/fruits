@@ -1,24 +1,34 @@
 # This part of the project is a collection of examples. This code designed
 # to be used stand-alone, hence we are declaring 'project' and calling
-# 'HunterGate' here. When using as a part of parent project the 'HunterGate' call
-# effectively will be ignored.
+# 'HunterGate' here (by including 'init.cmake). When using as a part of parent
+# project the 'HunterGate' call effectively will be ignored.
 
 # Project starts here and not inside 'example/fruits/CMakeLists.txt' since
 # we have to support '#include <fruits/*.hpp>' pattern. Meaning that
 # 'example/fruits/quick_meal' can't be used as a stand-alone project.
 
-# The idea is to allow user to copy this file, remove LOCAL and GIT_SELF,
-# remove 'add_subdirectory' directives with uninterested examples, copy sources
-# for the 'add_subdirectory' that left.
+# Usage:
+#
+# * copy 'fruits/example' directory to new location:
+#
+#     > cp -r fruits/example my-new-fruits-project
+#
+# * Remove FRUITS_EXAMPLE_GIT_SELF or set it to OFF
+#
+# * Remove 'add_subdirectory' calls from 'fruits/CMakeLists.txt with
+#   uninterested examples
 
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.2)
 
-include("cmake/HunterGate.cmake")
-HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.21.18.tar.gz"
-    SHA1 "19e4a2f3034baa13f215eba3aa580365c5254508"
-    LOCAL
-)
+# Use 'hunter_config(fruits GIT_SELF)'. If project build as part of 'fruits'
+# then 'init.cmake' included by parent and this option set to 'OFF'
+# (see 'config.cmake').  If example build as a stand-alone project then option
+# will be initialized here and set to 'ON'.
+option(FRUITS_EXAMPLE_GIT_SELF "Use GIT_SELF" ON)
+
+# This is where HunterGate called from.
+# For rationale see comments inside module.
+include("cmake/include/init.cmake")
 
 # We are not installing anything hence the name of the project doesn't matter.
 # There will be no corresponding 'fruits-example' C++ namespace.
