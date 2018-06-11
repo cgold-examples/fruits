@@ -19,7 +19,7 @@ option(HUNTER_ENABLED "Enable Hunter package manager" ON)
 # }
 
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.22.11.tar.gz"
-    SHA1 "997db69f168602b40f4749bc5e69e7d6c57f8c65"
+    URL "https://github.com/ruslo/hunter/archive/v0.22.12.tar.gz"
+    SHA1 "34d985ce72c67441644664a2e3f7ab0822613768"
     FILEPATH "${CMAKE_CURRENT_LIST_DIR}/config.cmake"
 )
