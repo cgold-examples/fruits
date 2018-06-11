@@ -21,7 +21,10 @@ check_ci_tag()
 
 # Project options {
 
-# Should be before collecting sources (some sources can be optional).
+# Order:
+# * Should be set before collecting sources (some sources can be optional).
+# * Should be set after 'project' since we may want to check platfrom specific
+#   variables like WIN32, APPLE, XCODE, etc.
 
 # If somebody want to install your libraries and tools probably they don't want
 # to build tests or examples:
@@ -30,6 +33,8 @@ check_ci_tag()
 # * http://cgold.readthedocs.io/en/latest/tutorials/variables/cache.html#recommendation
 option(FRUITS_BUILD_EXAMPLES "Build examples" ON)
 option(FRUITS_BUILD_TESTS "Build tests" ON)
+
+# Note: options for third parties tweak should be defined in 'config.cmake'
 
 # }
 
