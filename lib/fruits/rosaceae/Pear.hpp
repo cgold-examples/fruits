@@ -6,12 +6,12 @@
 namespace fruits {
 namespace rosaceae {
 
-class FRUITS_ROSACEAE_EXPORT Pear {
+class Pear {
  public:
-  Pear(int basic_code);
+  FRUITS_ROSACEAE_EXPORT Pear(int basic_code);
 
-  static const char* name();
-  static bool skin_off();
+  FRUITS_ROSACEAE_EXPORT static const char* name();
+  FRUITS_ROSACEAE_EXPORT static bool skin_off();
 
   int code() const;
 
