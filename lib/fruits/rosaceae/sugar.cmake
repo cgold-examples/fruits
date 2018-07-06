@@ -9,4 +9,9 @@ sugar_files(
     rosaceae.hpp
 )
 
+sugar_files(
+    FRUITS_SKIN_OFF_SOURCES
+    Pear.cpp # TODO: optimize using OBJECTS
+)
+
 sugar_include(unittest)
