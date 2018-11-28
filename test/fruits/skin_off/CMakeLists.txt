@@ -1,9 +1,11 @@
-add_executable(fruits_skin_off ${FRUITS_SKIN_OFF_SOURCES})
+set(target_name fruits_skin_off)
+
+add_executable(${target_name} ${FRUITS_SKIN_OFF_SOURCES})
 target_link_libraries(
-    fruits_skin_off PUBLIC GTest::main fruits_tropical fruits_rosaceae
+    ${target_name} PUBLIC GTest::main fruits_tropical fruits_rosaceae
 )
 
-add_test(NAME fruits_skin_off COMMAND fruits_skin_off)
+add_test(NAME ${target_name} COMMAND ${target_name})
 
 if(WIN32 OR CYGWIN)
   # If dependent library is a DLL we have to add location of DLL to PATH
@@ -22,6 +24,6 @@ if(WIN32 OR CYGWIN)
   endif()
 
   set_tests_properties(
-      fruits_skin_off PROPERTIES ENVIRONMENT "PATH=${new_path}"
+      ${target_name} PROPERTIES ENVIRONMENT "PATH=${new_path}"
   )
 endif()

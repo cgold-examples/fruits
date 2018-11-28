@@ -1,6 +1,8 @@
-add_library(fruits_rosaceae ${FRUITS_ROSACEAE_SOURCES})
+set(target_name fruits_rosaceae)
+
+add_library(${target_name} ${FRUITS_ROSACEAE_SOURCES})
 target_include_directories(
-    fruits_rosaceae
+    ${target_name}
     PUBLIC
     "$<BUILD_INTERFACE:${LOCAL_INCLUDE_DIRECTORY}>"
     "$<BUILD_INTERFACE:${LOCAL_GENERATED_INCLUDE_DIRECTORY}>"
@@ -9,7 +11,7 @@ target_include_directories(
 # ALIAS target allow us to have same interface while including project
 # * by `add_subdirectory(3rdParty/fruits)`
 # * by `find_package(fruits CONFIG REQUIRED)`
-add_library(${NAMESPACE}fruits_rosaceae ALIAS fruits_rosaceae)
+add_library(${NAMESPACE}${target_name} ALIAS ${target_name})
 
 # Renaming because:
 # * We need prefix '${PROJECT_NAME}' to fit OSX/iOS frameworks layout
@@ -19,10 +21,10 @@ set(
     "${LOCAL_GENERATED_INCLUDE_DIRECTORY}/${PROJECT_NAME}/FRUITS_ROSACEAE_EXPORT.h"
 )
 include(GenerateExportHeader)
-generate_export_header(fruits_rosaceae EXPORT_FILE_NAME ${export_header})
+generate_export_header(${target_name} EXPORT_FILE_NAME ${export_header})
 
 install(
-    TARGETS fruits_rosaceae
+    TARGETS ${target_name}
     EXPORT "${TARGETS_EXPORT_NAME}"
     LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
     ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"

@@ -1,15 +1,17 @@
-add_executable(fruits_breakfast ${FRUITS_BREAKFAST_SOURCES})
+set(target_name fruits_breakfast)
+
+add_executable(${target_name} ${FRUITS_BREAKFAST_SOURCES})
 target_include_directories(
-    fruits_breakfast
+    ${target_name}
     PUBLIC
     "$<BUILD_INTERFACE:${LOCAL_INCLUDE_DIRECTORY}>"
 )
 
-target_link_libraries(fruits_breakfast PUBLIC fruits_tropical)
+target_link_libraries(${target_name} PUBLIC fruits_tropical)
 
 if(NOT IOS)
   install(
-      TARGETS fruits_breakfast
+      TARGETS ${target_name}
       EXPORT "${TARGETS_EXPORT_NAME}"
       LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
       ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
