@@ -9,7 +9,7 @@ target_include_directories(
 # ALIAS target allow us to have same interface while including project
 # * by `add_subdirectory(3rdParty/fruits)`
 # * by `find_package(fruits CONFIG REQUIRED)`
-add_library(${PROJECT_NAME}::fruits_rosaceae ALIAS fruits_rosaceae)
+add_library(${NAMESPACE}fruits_rosaceae ALIAS fruits_rosaceae)
 
 # Renaming because:
 # * We need prefix '${PROJECT_NAME}' to fit OSX/iOS frameworks layout
